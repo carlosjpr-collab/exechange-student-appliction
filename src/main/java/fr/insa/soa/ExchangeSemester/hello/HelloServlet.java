@@ -22,6 +22,6 @@ public class HelloServlet {
 		}
 		System.out.println("Now, there are : " + userRepository.count() + " users saved");
 		model.addAttribute("users", itUser);
-		return "greeting";
+		return "register";
 	}
 }

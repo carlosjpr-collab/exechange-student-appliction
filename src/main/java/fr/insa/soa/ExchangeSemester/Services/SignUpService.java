@@ -7,6 +7,7 @@ import java.security.NoSuchAlgorithmException;
 import javax.xml.bind.DatatypeConverter;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -47,6 +48,17 @@ public class SignUpService {
 			userRepository.save(user);
 			return "{\"success\": \"true\"}";
 		}
-
 	}
+	
+/*	@DeleteMapping(value="/signup")
+	public String deleteAccount(@RequestBody User user) {
+		Iterable<User> listUsers = userRepository.findAll();
+
+		for (User myUser : listUsers) {
+			if (myUser.getLogin().equals(user.getLogin())) {
+				found = true;
+			}
+		}
+	}*/
+	
 }
