@@ -10,25 +10,46 @@
 
     <title>INSA Student Exchange</title>
   </head>
+  <style media="screen">
+     body {
+       background-image: url("http://sdu.edu.kz/media/filer_public/69/cb/69cb734a-0a06-401f-abf7-f3d584d4b864/spreedly-for-travel-238408bd8463e6f28f25976cc3dcef5e.png");
+       background-repeat: no-repeat;
+       background-attachment: fixed;
+       background-position: center;
+       background-size: cover
+}
+  </style>
   <body>
 
   <div id="login" class="container">
-  {{message}}
    <div class="row">
      <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
        <div class="card card-signin my-5">
          <div class="card-body">
            <h5 class="card-title text-center">Sign up</h5>
            <form class="form-signin">
+
              <div class="form-label-group">
-               <input v-model="userEmail" type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
-               <label for="inputEmail">Email address</label>
+               <label for="firstName">FirstName</label>
+               <input v-model="firstName" type="text" id="firstName" class="form-control" placeholder="FirstName" required autofocus>
              </div>
 
              <div class="form-label-group">
-               <input v-model="userPassword" type="password" id="inputPassword" class="form-control" placeholder="Password" required>
-               <label for="inputPassword">Password</label>
+               <label for="lastName">LastName</label>
+               <input v-model="lastName" type="text" id="lastName" class="form-control" placeholder="LastName" required autofocus>
              </div>
+
+
+             <div class="form-label-group">
+               <label for="inputEmail">Email address</label>
+               <input v-model="userEmail" type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+             </div>
+
+             <div class="form-label-group">
+               <label for="inputPassword">Password</label>
+               <input v-model="userPassword" type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+             </div>
+
              <button  v-on:click="register()" class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Sign up</button>
          </div>
        </div>
@@ -46,15 +67,17 @@
     el: '#login',
     data: {
       message: '',
-      userEmail:'jh',
-      userPassword:'jh'
+      firstName:'',
+      lastName:'',
+      userEmail:'',
+      userPassword:''
     },
     methods: {
     register: function () {
       var vu=this;
       axios.put('http://localhost:8080/signup', {
-              lastName : "test" ,
-              firstName : "tesssssst",
+              lastName : vu.lastName,
+              firstName :vu.firstName,
               login: vu.userEmail,
               password:vu.userPassword,
               status:"admin"
@@ -69,7 +92,7 @@
   })
   }
 }})
-      </script>>
+      </script>
 
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
