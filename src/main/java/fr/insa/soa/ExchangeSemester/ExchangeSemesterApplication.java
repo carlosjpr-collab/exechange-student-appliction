@@ -10,3 +10,4 @@ public class ExchangeSemesterApplication {
 		SpringApplication.run(ExchangeSemesterApplication.class, args);
 	}
 }
+	

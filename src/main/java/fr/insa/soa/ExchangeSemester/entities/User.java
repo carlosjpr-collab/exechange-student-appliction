@@ -1,4 +1,4 @@
-package fr.insa.soa.ExchangeSemester.hello;
+package fr.insa.soa.ExchangeSemester.entities;
 
 import java.io.Serializable;
 

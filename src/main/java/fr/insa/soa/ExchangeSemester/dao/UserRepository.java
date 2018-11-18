@@ -1,6 +1,8 @@
-package fr.insa.soa.ExchangeSemester.hello;
+package fr.insa.soa.ExchangeSemester.dao;
 
 import org.springframework.data.repository.CrudRepository;
+
+import fr.insa.soa.ExchangeSemester.entities.User;
 
 // This will be AUTO IMPLEMENTED by Spring into a Bean called userRepository
 // CRUD refers Create, Read, Update, Delete

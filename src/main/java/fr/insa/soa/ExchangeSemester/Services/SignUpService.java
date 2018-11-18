@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import fr.insa.soa.ExchangeSemester.hello.User;
-import fr.insa.soa.ExchangeSemester.hello.UserRepository;
+import fr.insa.soa.ExchangeSemester.dao.UserRepository;
+import fr.insa.soa.ExchangeSemester.entities.User;
 
 @RestController
 public class SignUpService {
