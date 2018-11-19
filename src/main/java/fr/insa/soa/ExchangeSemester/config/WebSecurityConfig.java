@@ -45,22 +45,18 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.antMatchers("/js/**").permitAll()
 				.antMatchers("/css/**").permitAll()
 				.antMatchers("/images/**").permitAll()
-				.antMatchers("/student/**","/university/**","/insa/**").hasAuthority("ROLE_ADMIN")
-				.antMatchers("/student/**").hasAuthority("ROLE_STUDENT")
-				.antMatchers("/university/**").hasAuthority("ROLE_UNIVERSITY")
-				.antMatchers("/insa/**").hasAuthority("ROLE_INSA")
+				.antMatchers("/student/**").hasAnyAuthority("ROLE_STUDENT,ROLE_ADMIN")
+				.antMatchers("/university/**").hasAnyAuthority("ROLE_UNIVERSITY,ROLE_ADMIN")
+				.antMatchers("/insa/**").hasAnyAuthority("ROLE_INSA,ROLE_ADMIN")
 				.anyRequest().authenticated()
 				.and()
 			.formLogin()
 				.loginPage("/login").successHandler(authenticationSuccessHandler)
 				.permitAll()
 				.and()
-			.logout()
+			.logout()	
 				.permitAll()
 				.and()
 			.csrf().disable();;
 	}
-
-	
-	
 }
