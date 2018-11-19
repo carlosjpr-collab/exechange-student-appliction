@@ -1,12 +1,16 @@
 package fr.insa.soa.ExchangeSemester.model;
 
 import java.io.Serializable;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -28,6 +32,10 @@ public class User implements Serializable {
 	private String login;
 	private String password;
 	private String status;
+
+	@OneToOne(cascade = { CascadeType.MERGE, CascadeType.REMOVE, CascadeType.REFRESH })
+	@JoinColumn(name = "id_user")
+	private Role role;
 
 	public User() {
 	}
@@ -87,6 +95,14 @@ public class User implements Serializable {
 
 	public void setStatus(String status) {
 		this.status = status;
+	}
+
+	public Role getRole() {
+		return role;
+	}
+
+	public void setRole(Role role) {
+		this.role = role;
 	}
 
 }

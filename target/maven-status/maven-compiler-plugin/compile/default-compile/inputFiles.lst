@@ -1,6 +1,8 @@
-/home/elyes/sts-workspace/ExchangeSemester/SOA/src/main/java/fr/insa/soa/ExchangeSemester/Services/LogInService.java
-/home/elyes/sts-workspace/ExchangeSemester/SOA/src/main/java/fr/insa/soa/ExchangeSemester/Services/SignUpService.java
-/home/elyes/sts-workspace/ExchangeSemester/SOA/src/main/java/fr/insa/soa/ExchangeSemester/hello/UserRepository.java
+/home/elyes/sts-workspace/ExchangeSemester/SOA/src/main/java/fr/insa/soa/ExchangeSemester/model/User.java
+/home/elyes/sts-workspace/ExchangeSemester/SOA/src/main/java/fr/insa/soa/ExchangeSemester/services/UserService.java
+/home/elyes/sts-workspace/ExchangeSemester/SOA/src/main/java/fr/insa/soa/ExchangeSemester/services/SignUpService.java
 /home/elyes/sts-workspace/ExchangeSemester/SOA/src/main/java/fr/insa/soa/ExchangeSemester/ExchangeSemesterApplication.java
-/home/elyes/sts-workspace/ExchangeSemester/SOA/src/main/java/fr/insa/soa/ExchangeSemester/hello/User.java
-/home/elyes/sts-workspace/ExchangeSemester/SOA/src/main/java/fr/insa/soa/ExchangeSemester/hello/HelloServlet.java
+/home/elyes/sts-workspace/ExchangeSemester/SOA/src/main/java/fr/insa/soa/ExchangeSemester/config/WebSecurityConfig.java
+/home/elyes/sts-workspace/ExchangeSemester/SOA/src/main/java/fr/insa/soa/ExchangeSemester/config/MvcConfigView.java
+/home/elyes/sts-workspace/ExchangeSemester/SOA/src/main/java/fr/insa/soa/ExchangeSemester/services/LogInService.java
+/home/elyes/sts-workspace/ExchangeSemester/SOA/src/main/java/fr/insa/soa/ExchangeSemester/dao/UserRepository.java
