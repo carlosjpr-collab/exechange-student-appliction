@@ -1,0 +1,9 @@
+/home/elyes/sts-workspace/ExchangeSemester/SOA/src/main/java/fr/insa/soa/ExchangeSemester/model/User.java
+/home/elyes/sts-workspace/ExchangeSemester/SOA/src/main/java/fr/insa/soa/ExchangeSemester/services/UserService.java
+/home/elyes/sts-workspace/ExchangeSemester/SOA/src/main/java/fr/insa/soa/ExchangeSemester/config/CustomAuthenticationSuccessHandler.java
+/home/elyes/sts-workspace/ExchangeSemester/SOA/src/main/java/fr/insa/soa/ExchangeSemester/ExchangeSemesterApplication.java
+/home/elyes/sts-workspace/ExchangeSemester/SOA/src/main/java/fr/insa/soa/ExchangeSemester/config/WebSecurityConfig.java
+/home/elyes/sts-workspace/ExchangeSemester/SOA/src/main/java/fr/insa/soa/ExchangeSemester/restServices/SignUpService.java
+/home/elyes/sts-workspace/ExchangeSemester/SOA/src/main/java/fr/insa/soa/ExchangeSemester/config/MvcConfigView.java
+/home/elyes/sts-workspace/ExchangeSemester/SOA/src/main/java/fr/insa/soa/ExchangeSemester/dao/UserRepository.java
+/home/elyes/sts-workspace/ExchangeSemester/SOA/src/main/java/fr/insa/soa/ExchangeSemester/model/Role.java
