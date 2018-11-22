@@ -30,7 +30,15 @@ body {
 					<div class="card-body">
 						<h5 class="card-title text-center">Sign up</h5>
 						<form class="form-signin">
-
+							<div class="form-group">
+								<select class="form-control" id="exampleFormControlSelect1" v-model="selected">
+									<option disabled value="">You are ?</option>
+									<option>Student</option>
+									<option>University</option>
+									<option>INSA</option>
+								</select>
+								<!--   <span>Sélectionné : {{ selected }}</span>  -->
+							</div>
 							<div class="form-label-group">
 								<label for="firstName">FirstName</label> <input v-model="firstName" type="text" id="firstName"
 									class="form-control" placeholder="FirstName" required autofocus>
@@ -51,14 +59,12 @@ body {
 								<label for="inputPassword">Password</label> <input v-model="userPassword" type="password" id="inputPassword"
 									class="form-control" placeholder="Password" required>
 							</div>
-							<div class="form-group">
-								<label for="exampleFormControlSelect1">You are ?</label> <select class="form-control"
-									id="exampleFormControlSelect1">
-									<option>Student</option>
-									<option>University</option>
-									<option>INSA</option>
-								</select>
+
+							<div class="form-label-group" v-if="selected === 'University'">
+								<label for="inputPassword">URL endpoint</label> <input v-model="endpoint" type="text" id="inputPassword"
+									class="form-control" placeholder="Endpoint" required>
 							</div>
+
 							<button v-on:click="register()" class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Sign
 								up</button>
 					</div>
@@ -79,17 +85,28 @@ body {
       firstName:'',
       lastName:'',
       userEmail:'',
-      userPassword:''
+      userPassword:'',
+      selected:''
     },
     methods: {
     register: function () {
-      var vu=this;
+    	var idRole;
+    	if(this.selected === 'Student'){
+    		idRole = 11;
+    	}
+		if(this.selected === 'University'){
+			idRole = 21;
+    	}
+		if(this.selected === 'INSA'){
+			idRole = 31;
+		}
+		
       axios.put('http://localhost:8080/signup', {
-              lastName : vu.lastName,
-              firstName :vu.firstName,
-              login: vu.userEmail,
-              password:vu.userPassword,
-              status:"admin"
+              lastName : this.lastName,
+              firstName :this.firstName,
+              login: this.userEmail,
+              password:this.userPassword,
+              role: idRole
       })
   .then(function (response) {
     console.log(response);
