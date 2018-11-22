@@ -26,7 +26,7 @@ public class SignUpService {
 	public String addAcount(@RequestBody User user) throws UnsupportedEncodingException, NoSuchAlgorithmException {
 		UserService userService = new UserService(userRepository);
 		
-		System.out.println("user infos : " + " " + user.getFirstName() + " " +  user.getLastName() + " " +  user.getLogin() + " " +  user.getPassword() + " " +  user.getStatus() + " " +  user.getId());
+		System.out.println("user infos : " + " " + user.getFirstName() + " " +  user.getLastName() + " " +  user.getLogin() + " " +  user.getPassword() + " " +  user.getId());
 		
 		boolean result = userService.saveUser(user);
 		

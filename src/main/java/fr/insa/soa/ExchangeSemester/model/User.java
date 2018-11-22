@@ -14,7 +14,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "user_test")
+@Table(name = "user")
 public class User implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -23,18 +23,19 @@ public class User implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
-	@Column(name = "lastname")
+	@Column(name = "last_name")
 	private String lastName;
 
-	@Column(name = "firstname")
+	@Column(name = "first_name")
 	private String firstName;
 
 	private String login;
 	private String password;
-	private String status;
+
+	private int enabled;
 
 	@OneToOne(cascade = { CascadeType.MERGE, CascadeType.REMOVE, CascadeType.REFRESH })
-	@JoinColumn(name = "id_user")
+	@JoinColumn(name = "id_role")
 	private Role role;
 
 	public User() {
@@ -46,7 +47,8 @@ public class User implements Serializable {
 		this.firstName = user.firstName;
 		this.login = user.login;
 		this.password = user.password;
-		this.status = user.status;
+		this.enabled = user.enabled;
+		this.role = user.role;
 	}
 
 	public Integer getId() {
@@ -89,12 +91,12 @@ public class User implements Serializable {
 		this.password = password;
 	}
 
-	public String getStatus() {
-		return status;
+	public int getEnabled() {
+		return enabled;
 	}
 
-	public void setStatus(String status) {
-		this.status = status;
+	public void setEnabled(int enabled) {
+		this.enabled = enabled;
 	}
 
 	public Role getRole() {
