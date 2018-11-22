@@ -32,7 +32,7 @@ public class UserService {
 			MessageDigest md = MessageDigest.getInstance("MD5");
 			byte[] hash = md.digest(byteChaine);
 
-			String myHash = DatatypeConverter.printHexBinary(hash);
+			String myHash = DatatypeConverter.printHexBinary(hash).toLowerCase();
 
 			user.setPassword(myHash);
 			System.out.println(" ERREUR ??? " );
