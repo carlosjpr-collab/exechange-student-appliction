@@ -11,6 +11,7 @@ public class RootController {
 	@GetMapping("/")
 	public String redirectLogin() {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		//a user who's trying to access to root (welcome) page will be redirected if he's already authenticated
 
 		if (auth.isAuthenticated()) {
 			switch (auth.getAuthorities().toString()) {

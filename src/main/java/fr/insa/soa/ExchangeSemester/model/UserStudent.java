@@ -2,7 +2,7 @@ package fr.insa.soa.ExchangeSemester.model;
 
 import java.io.Serializable;
 
-import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
@@ -12,21 +12,20 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "user_university")
-public class UserUniversity implements Serializable{
+@Table(name = "student")
+public class UserStudent implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
 	private Integer id;
 
 	@OneToOne(fetch = FetchType.LAZY)
 	@MapsId()
-	@JoinColumn(name = "id_user")
+	@JoinColumn(name = "id_student")
 	private User user;
 
-	@OneToOne(cascade = { CascadeType.MERGE, CascadeType.REMOVE, CascadeType.REFRESH })
-	@JoinColumn(name = "id_university")
-	private University university;
+	@Column(name = "INSA_ranking")
+	private Integer insaRanking;
 
 	public Integer getId() {
 		return id;
@@ -44,12 +43,12 @@ public class UserUniversity implements Serializable{
 		this.user = user;
 	}
 
-	public University getUniversity() {
-		return university;
+	public Integer getInsaRanking() {
+		return insaRanking;
 	}
 
-	public void setUniversity(University university) {
-		this.university = university;
+	public void setInsaRanking(Integer insaRanking) {
+		this.insaRanking = insaRanking;
 	}
 
 }

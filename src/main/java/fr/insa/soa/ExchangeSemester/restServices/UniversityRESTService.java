@@ -10,7 +10,7 @@ import fr.insa.soa.ExchangeSemester.dao.UniversityRepository;
 import fr.insa.soa.ExchangeSemester.model.University;
 
 @RestController
-public class UniversityService {
+public class UniversityRESTService {
 	
 	@Autowired
 	UniversityRepository univRepository;

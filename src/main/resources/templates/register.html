@@ -65,15 +65,16 @@ body {
 						<label for="inputPassword">URL endpoint</label> <input v-model="endpoint" type="text" id="inputPassword"
 							class="form-control" placeholder="Endpoint" required>
 					</div>
-					<ul v-if="selected === 'University'">
-						<li v-for="univ in univs">{{ univ }}</li>
-					</ul>
+					<select v-if="selected === 'University'" v-model="selectedUniv">
+						<option disabled value="" selected="selected"> Choose an university </option>
+						<option v-for="univ in univs">{{ univ.url }}</option>
+					</select>
 
 					<br>
 					<button v-on:click="register()" class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Sign
 						up</button>
 
-					<div>{{ successSignUp }}</div>
+					<div style="color:red">{{ successSignUp }}</div>
 
 				</div>
 			</div>

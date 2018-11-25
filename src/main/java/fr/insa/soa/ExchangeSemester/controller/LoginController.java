@@ -11,7 +11,7 @@ public class LoginController {
 	@GetMapping("/login")
 	public String redirectLogin() {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-
+		//a user who's trying to access to login page will be redirected if he's already authenticated
 		if (auth.isAuthenticated()) {
 			switch (auth.getAuthorities().toString()) {
 			case "[ROLE_ADMIN]":
