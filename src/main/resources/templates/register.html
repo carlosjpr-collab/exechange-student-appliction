@@ -60,21 +60,36 @@ body {
 						<label for="inputPassword">Password</label> <input v-model="userPassword" type="password" id="inputPassword"
 							class="form-control" placeholder="Password" required>
 					</div>
+					
+					<br>
 
-					<div class="form-label-group" v-if="selected === 'University'">
-						<label for="inputPassword">URL endpoint</label> <input v-model="endpoint" type="text" id="inputPassword"
-							class="form-control" placeholder="Endpoint" required>
+					<div v-if="selected === 'University'">
+
+						<div class="row">
+							<div class="col-sm">
+							<select v-model="selectedUniv">
+							<option disabled value="" selected="selected">Choose an university</option>
+							<option v-for="univ in univs">{{ univ.url }}</option>
+						</select>
+							</div>
+							<div class="col-sm">
+							<button type="button" class="btn btn-primary btn-sm">Add a new one</button>
+							</div>
+
+						</div>
+						
+
+
+						<div class="form-label-group" v-if="selected === 'University'">
+							<label for="inputPassword">URL endpoint</label> <input v-model="endpoint" type="text" id="inputPassword"
+								class="form-control" placeholder="Endpoint" required>
+						</div>
 					</div>
-					<select v-if="selected === 'University'" v-model="selectedUniv">
-						<option disabled value="" selected="selected"> Choose an university </option>
-						<option v-for="univ in univs">{{ univ.url }}</option>
-					</select>
-
 					<br>
 					<button v-on:click="register()" class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Sign
 						up</button>
 
-					<div style="color:red">{{ successSignUp }}</div>
+					<div style="color: red">{{ successSignUp }}</div>
 
 				</div>
 			</div>
