@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
   <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -47,7 +47,7 @@
 				<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 				  <a class="dropdown-item" href="#">Action</a>
 				  <div class="dropdown-divider"></div>
-				  <a class="dropdown-item" href="#">Log out</a>
+				  <a class="dropdown-item" th:href="@{/logout}">Log out</a>
 				</div>
 			  </li>
 

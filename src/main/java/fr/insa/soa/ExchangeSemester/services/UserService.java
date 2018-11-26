@@ -32,11 +32,9 @@ public class UserService {
 			MessageDigest md = MessageDigest.getInstance("MD5");
 			byte[] hash = md.digest(byteChaine);
 
-			String myHash = DatatypeConverter.printHexBinary(hash);
+			String myHash = DatatypeConverter.printHexBinary(hash).toLowerCase();
 
 			user.setPassword(myHash);
-			System.out.println(" ERREUR ??? " );
-
 			userRepository.save(user);
 			return true;
 		}
@@ -47,12 +45,4 @@ public class UserService {
 		}
 
 	}
-
-	/*
-	 * public void saveUser(User user) {
-	 * user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
-	 * user.setActive(1); Role userRole = roleRepository.findByRole("ADMIN");
-	 * user.setRoles(new HashSet<Role>(Arrays.asList(userRole)));
-	 * userRepository.save(user); }
-	 */
 }

@@ -1,7 +1,6 @@
 package fr.insa.soa.ExchangeSemester.model;
 
 import java.io.Serializable;
-import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -31,7 +30,6 @@ public class User implements Serializable {
 
 	private String login;
 	private String password;
-
 	private int enabled;
 
 	@OneToOne(cascade = { CascadeType.MERGE, CascadeType.REMOVE, CascadeType.REFRESH })
@@ -106,5 +104,19 @@ public class User implements Serializable {
 	public void setRole(Role role) {
 		this.role = role;
 	}
+
+	@Override
+	public boolean equals(Object obj) {
+		// TODO Auto-generated method stub
+		return super.equals(obj);
+	}
+
+	@Override
+	public int hashCode() {
+		// TODO Auto-generated method stub
+		return super.hashCode();
+	}
+	
+	
 
 }
