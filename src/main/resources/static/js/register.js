@@ -54,7 +54,7 @@ var app = new Vue({
       //TODO: FACTORIZE AXIOS FUNCTION
 
       axios
-        .put('http://localhost:8080/service/user', json)
+        .put(document.location.href.substring( 0 ,document.location.href.lastIndexOf("/")) +  '/service/user', json)
         .then(function (response) {
           obj = JSON.parse(JSON.stringify(response.data));
           if (obj.success == "false") {
@@ -87,7 +87,7 @@ var app = new Vue({
         url: this.endpoint
       };
       axios
-        .put('http://localhost:8080/service/university', json)
+        .put(document.location.href.substring( 0 ,document.location.href.lastIndexOf("/")) + '/service/university', json)
         .then(function (response) {
           console.log(response);
           obj = JSON.parse(JSON.stringify(response.data));
@@ -110,7 +110,7 @@ var app = new Vue({
         idUniv: idUniversity
       };
       axios
-        .put('http://localhost:8080/service/userUniversity', jsonUserUniv)
+        .put(document.location.href.substring( 0 ,document.location.href.lastIndexOf("/")) + '/service/userUniversity', jsonUserUniv)
         .then(function (response) {
           obj = JSON.parse(JSON.stringify(response.data));
           console.log(obj.success);
@@ -125,7 +125,7 @@ var app = new Vue({
       };
 
       axios
-        .put('http://localhost:8080/service/userStudent', jsonUserStud)
+        .put(document.location.href.substring( 0 ,document.location.href.lastIndexOf("/")) + '/service/userStudent', jsonUserStud)
         .then(function (response) {
           obj = JSON.parse(JSON.stringify(response.data));
           console.log(obj.success);
@@ -139,7 +139,7 @@ var app = new Vue({
       var vue = this;
       this.univs = [];
       axios
-        .get('http://localhost:8080/service/university')
+        .get(document.location.href.substring( 0 ,document.location.href.lastIndexOf("/")) + '/service/university')
         .then(function (response) {
           obj = JSON.parse(JSON.stringify(response.data));
           var i;
