@@ -9,11 +9,23 @@ var app = new Vue({
     selected: '',
     selectedUniv: '',
     successSignUp: '',
+    successAddUniv: '',
     endpoint: '',
+    countryUniv: '',
+    cityUniv: '',
     univs: [],
-    idUserCreated: ''
+    idUserCreated: '',
+    showAddUniv: false
   },
   methods: {
+    showAddUnivForme: function () {
+      if (this.showAddUniv) {
+        this.showAddUniv = false;
+      }
+      else {
+        this.showAddUniv = true;
+      }
+    },
     register: function () {
       var idRole;
       if (this.selected === 'Student') {
@@ -66,6 +78,32 @@ var app = new Vue({
           console.log(error);
         })
     },
+    registerUniv: function () {
+      var vue = this;
+      var json = {
+        //id - name ???
+        country: this.countryUniv,
+        city: this.cityUniv,
+        url: this.endpoint
+      };
+      axios
+        .put('http://localhost:8080/service/university', json)
+        .then(function (response) {
+          console.log(response);
+          obj = JSON.parse(JSON.stringify(response.data));
+          if (obj.success == "true") {
+            vue.successAddUniv = "University added !";
+            vue.getUniversities();
+          }
+          else{
+              vue.successAddUniv = "University already registered !";
+          }
+        })
+        .catch(function (error) {
+          console.log(error);
+        })
+    }
+    ,
     putUserUniversity: function (id, idUniversity) {
       var jsonUserUniv = {
         idUser: id,
@@ -99,6 +137,7 @@ var app = new Vue({
     },
     getUniversities: function () {
       var vue = this;
+      this.univs = [];
       axios
         .get('http://localhost:8080/service/university')
         .then(function (response) {
@@ -124,6 +163,6 @@ var app = new Vue({
   },
   beforeMount() {
     this.getUniversities();
-    ;
+    
   }
 })
