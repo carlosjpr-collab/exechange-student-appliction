@@ -18,4 +18,5 @@
 /home/elyes/sts-workspace/ExchangeSemester/SOA/src/main/java/fr/insa/soa/ExchangeSemester/restServices/UserStudentRESTService.java
 /home/elyes/sts-workspace/ExchangeSemester/SOA/src/main/java/fr/insa/soa/ExchangeSemester/config/CustomAuthenticationSuccessHandler.java
 /home/elyes/sts-workspace/ExchangeSemester/SOA/src/main/java/fr/insa/soa/ExchangeSemester/ExchangeSemesterApplication.java
+/home/elyes/sts-workspace/ExchangeSemester/SOA/src/main/java/fr/insa/soa/ExchangeSemester/restServices/CourseRESTService.java
 /home/elyes/sts-workspace/ExchangeSemester/SOA/src/main/java/fr/insa/soa/ExchangeSemester/config/MvcConfigView.java
