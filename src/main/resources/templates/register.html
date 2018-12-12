@@ -27,70 +27,97 @@ body {
 
 	<div id="login">
 		<div class="container-fluid" style="background-color: white; margin-top: 5%; height: 35em">
-			<div class="container">
-				<h3>Join us</h3>
-				</br>
-				<div class="container" style="width: 50%">
-					<div class="form-group">
-						<select class="form-control" id="exampleFormControlSelect1" v-model="selected">
-							<option disabled value="">You are ...</option>
-							<option>Student</option>
-							<option>University</option>
-							<option>INSA</option>
-						</select>
-						<!--   <span>Sélectionné : {{ selected }}</span>  -->
-					</div>
-					<div class="form-label-group">
-						<label for="firstName">FirstName</label> <input v-model="firstName" type="text" id="firstName"
-							class="form-control" placeholder="FirstName" required autofocus>
-					</div>
+			<h3>Join us</h3>
+			<div class="row">
+				<i> Some information about you</i>
+				<div class="col-sm">
+					<div class="container" style="width: 50%">
+						<form v-on:submit.prevent="register">
+							<div class="form-group">
+								<select class="form-control" id="exampleFormControlSelect1" v-model="selected" required>
+									<option disabled value="">You are ...</option>
+									<option>Student</option>
+									<option>University</option>
+									<option>INSA</option>
+								</select>
+							</div>
+							<div class="form-label-group">
+								<label for="firstName">FirstName</label> <input v-model="firstName" type="text" id="firstName"
+									class="form-control" placeholder="FirstName" required autofocus>
+							</div>
+							<div class="form-label-group">
+								<label for="lastName">LastName</label> <input v-model="lastName" type="text" id="lastName" class="form-control"
+									placeholder="LastName" required autofocus>
+							</div>
 
-					<div class="form-label-group">
-						<label for="lastName">LastName</label> <input v-model="lastName" type="text" id="lastName" class="form-control"
-							placeholder="LastName" required autofocus>
+
+							<div class="form-label-group">
+								<label for="inputEmail">Email address</label> <input v-model="userEmail" type="email" id="inputEmail"
+									class="form-control" placeholder="Email address" required autofocus>
+							</div>
+
+							<div class="form-label-group">
+								<label for="inputPassword">Password</label> <input v-model="userPassword" type="password" id="inputPassword"
+									class="form-control" placeholder="Password" required>
+							</div>
+							<br> <input class="btn btn-lg btn-primary btn-block text-uppercase" type="submit"
+								value="Sign Up">
+						</form>
+						<div style="color: red">{{ successSignUp }}</div>
 					</div>
-
-
-					<div class="form-label-group">
-						<label for="inputEmail">Email address</label> <input v-model="userEmail" type="email" id="inputEmail"
-							class="form-control" placeholder="Email address" required autofocus>
-					</div>
-
-					<div class="form-label-group">
-						<label for="inputPassword">Password</label> <input v-model="userPassword" type="password" id="inputPassword"
-							class="form-control" placeholder="Password" required>
-					</div>
-					
-					<br>
-
+				</div>
+				<div class="col-sm">
 					<div v-if="selected === 'University'">
+						<p>
+							<i> Some information about your university</i>
+
+						</p>
 
 						<div class="row">
+
 							<div class="col-sm">
-							<select v-model="selectedUniv">
-							<option disabled value="" selected="selected">Choose an university</option>
-							<option v-for="univ in univs">{{ univ.url }}</option>
-						</select>
-							</div>
-							<div class="col-sm">
-							<button type="button" class="btn btn-primary btn-sm">Add a new one</button>
+								<select v-model="selectedUniv">
+									<option disabled value="" selected="selected">Choose an university</option>
+									<option v-for="univ in univs">{{ univ.url }}</option>
+								</select>
 							</div>
 
+							<div style="color: blue">{{ successAddUniv }}</div>
+							<div class="col-sm">
+								<button type="button" class="btn btn-primary btn-sm" v-on:click="showAddUnivForme">Add a new one</button>
+							</div>
 						</div>
-						
+
+						<div class="container" style="margin-top: 5%; width: 45%" v-if="showAddUniv">
+							<div class="form-label-group">
+								<label for="name">Name</label> <input v-model="nameUniv" type="text" id="nameUniv" class="form-control"
+									placeholder="Name of the university" required autofocus>
+							</div>
+
+							<div class="form-label-group">
+								<label for="countryUniv">Country</label> <input v-model="countryUniv" type="text" id="countryUniv"
+									class="form-control" placeholder="Country" required autofocus>
+							</div>
+
+							<div class="form-label-group">
+								<label for="cityUniv">FirstName</label> <input v-model="cityUniv" type="text" id="cityUniv" class="form-control"
+									placeholder="City" required autofocus>
+							</div>
+
+							<div class="form-label-group" v-if="selected === 'University'">
+								<label for="inputPassword">URL endpoint</label> <input v-model="endpoint" type="text" id="inputPassword"
+									class="form-control" placeholder="Endpoint" required>
+							</div>
+							<br>
+
+							<button v-on:click="registerUniv()" class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">
+								Add</button>
 
 
-						<div class="form-label-group" v-if="selected === 'University'">
-							<label for="inputPassword">URL endpoint</label> <input v-model="endpoint" type="text" id="inputPassword"
-								class="form-control" placeholder="Endpoint" required>
+
 						</div>
+
 					</div>
-					<br>
-					<button v-on:click="register()" class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Sign
-						up</button>
-
-					<div style="color: red">{{ successSignUp }}</div>
-
 				</div>
 			</div>
 		</div>

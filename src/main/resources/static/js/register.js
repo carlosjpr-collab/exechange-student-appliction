@@ -9,11 +9,23 @@ var app = new Vue({
     selected: '',
     selectedUniv: '',
     successSignUp: '',
+    successAddUniv: '',
     endpoint: '',
+    countryUniv: '',
+    cityUniv: '',
     univs: [],
-    idUserCreated: ''
+    idUserCreated: '',
+    showAddUniv: false
   },
   methods: {
+    showAddUnivForme: function () {
+      if (this.showAddUniv) {
+        this.showAddUniv = false;
+      }
+      else {
+        this.showAddUniv = true;
+      }
+    },
     register: function () {
       var idRole;
       if (this.selected === 'Student') {
@@ -42,7 +54,7 @@ var app = new Vue({
       //TODO: FACTORIZE AXIOS FUNCTION
 
       axios
-        .put('http://localhost:8080/service/user', json)
+        .put(document.location.href.substring( 0 ,document.location.href.lastIndexOf("/")) +  '/service/user', json)
         .then(function (response) {
           obj = JSON.parse(JSON.stringify(response.data));
           if (obj.success == "false") {
@@ -66,13 +78,39 @@ var app = new Vue({
           console.log(error);
         })
     },
+    registerUniv: function () {
+      var vue = this;
+      var json = {
+        //id - name ???
+        country: this.countryUniv,
+        city: this.cityUniv,
+        url: this.endpoint
+      };
+      axios
+        .put(document.location.href.substring( 0 ,document.location.href.lastIndexOf("/")) + '/service/university', json)
+        .then(function (response) {
+          console.log(response);
+          obj = JSON.parse(JSON.stringify(response.data));
+          if (obj.success == "true") {
+            vue.successAddUniv = "University added !";
+            vue.getUniversities();
+          }
+          else{
+              vue.successAddUniv = "University already registered !";
+          }
+        })
+        .catch(function (error) {
+          console.log(error);
+        })
+    }
+    ,
     putUserUniversity: function (id, idUniversity) {
       var jsonUserUniv = {
         idUser: id,
         idUniv: idUniversity
       };
       axios
-        .put('http://localhost:8080/service/userUniversity', jsonUserUniv)
+        .put(document.location.href.substring( 0 ,document.location.href.lastIndexOf("/")) + '/service/userUniversity', jsonUserUniv)
         .then(function (response) {
           obj = JSON.parse(JSON.stringify(response.data));
           console.log(obj.success);
@@ -87,7 +125,7 @@ var app = new Vue({
       };
 
       axios
-        .put('http://localhost:8080/service/userStudent', jsonUserStud)
+        .put(document.location.href.substring( 0 ,document.location.href.lastIndexOf("/")) + '/service/userStudent', jsonUserStud)
         .then(function (response) {
           obj = JSON.parse(JSON.stringify(response.data));
           console.log(obj.success);
@@ -99,8 +137,9 @@ var app = new Vue({
     },
     getUniversities: function () {
       var vue = this;
+      this.univs = [];
       axios
-        .get('http://localhost:8080/service/university')
+        .get(document.location.href.substring( 0 ,document.location.href.lastIndexOf("/")) + '/service/university')
         .then(function (response) {
           obj = JSON.parse(JSON.stringify(response.data));
           var i;
@@ -124,6 +163,6 @@ var app = new Vue({
   },
   beforeMount() {
     this.getUniversities();
-    ;
+    
   }
 })
