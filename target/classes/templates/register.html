@@ -32,37 +32,37 @@ body {
 				<i> Some information about you</i>
 				<div class="col-sm">
 					<div class="container" style="width: 50%">
-						<div class="form-group">
-							<select class="form-control" id="exampleFormControlSelect1" v-model="selected">
-								<option disabled value="">You are ...</option>
-								<option>Student</option>
-								<option>University</option>
-								<option>INSA</option>
-							</select>
-						</div>
-						<div class="form-label-group">
-							<label for="firstName">FirstName</label> <input v-model="firstName" type="text" id="firstName"
-								class="form-control" placeholder="FirstName" required autofocus>
-						</div>
-						<div class="form-label-group">
-							<label for="lastName">LastName</label> <input v-model="lastName" type="text" id="lastName" class="form-control"
-								placeholder="LastName" required autofocus>
-						</div>
+						<form v-on:submit.prevent="register">
+							<div class="form-group">
+								<select class="form-control" id="exampleFormControlSelect1" v-model="selected" required>
+									<option disabled value="">You are ...</option>
+									<option>Student</option>
+									<option>University</option>
+									<option>INSA</option>
+								</select>
+							</div>
+							<div class="form-label-group">
+								<label for="firstName">FirstName</label> <input v-model="firstName" type="text" id="firstName"
+									class="form-control" placeholder="FirstName" required autofocus>
+							</div>
+							<div class="form-label-group">
+								<label for="lastName">LastName</label> <input v-model="lastName" type="text" id="lastName" class="form-control"
+									placeholder="LastName" required autofocus>
+							</div>
 
 
-						<div class="form-label-group">
-							<label for="inputEmail">Email address</label> <input v-model="userEmail" type="email" id="inputEmail"
-								class="form-control" placeholder="Email address" required autofocus>
-						</div>
+							<div class="form-label-group">
+								<label for="inputEmail">Email address</label> <input v-model="userEmail" type="email" id="inputEmail"
+									class="form-control" placeholder="Email address" required autofocus>
+							</div>
 
-						<div class="form-label-group">
-							<label for="inputPassword">Password</label> <input v-model="userPassword" type="password" id="inputPassword"
-								class="form-control" placeholder="Password" required>
-						</div>
-						<br>
-
-						<input v-on:click="register()" class="btn btn-lg btn-primary btn-block text-uppercase" type="submit" value="Sign Up">
-
+							<div class="form-label-group">
+								<label for="inputPassword">Password</label> <input v-model="userPassword" type="password" id="inputPassword"
+									class="form-control" placeholder="Password" required>
+							</div>
+							<br> <input class="btn btn-lg btn-primary btn-block text-uppercase" type="submit"
+								value="Sign Up">
+						</form>
 						<div style="color: red">{{ successSignUp }}</div>
 					</div>
 				</div>
