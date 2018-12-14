@@ -21,7 +21,7 @@ public class UserStudent implements Serializable {
 
 	@OneToOne(fetch = FetchType.LAZY)
 	@MapsId()
-	@JoinColumn(name = "id_student")
+	@JoinColumn(name = "id_user")
 	private User user;
 
 	@Column(name = "INSA_ranking")
