@@ -10,3 +10,14 @@ https://exchangesemester.cfapps.io/
 
 *** Pour push l'application sur le cloud ***
     TODO
+
+
+<h2> REST Api </h2>
+<div>
+  All RESTFul services accessible via /service/XXXX
+  <ul>
+    <li> /service/university (GET : Return all universities - PUT : Save a new university into the DB) </li>
+    <li> /service/course?id=id_univ (GET : Return the courses for the university with id=id_univ) </li>
+    <li> /service/application (GET : Return all applications for the connected user - PUT : Save a new application for the connected user </li>
+  </ul>
+</div>
