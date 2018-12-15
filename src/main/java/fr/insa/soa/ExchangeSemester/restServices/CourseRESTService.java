@@ -17,7 +17,7 @@ public class CourseRESTService {
 	@Autowired
 	UniversityRepository univRepository;
 	
-	@GetMapping("/service/course")
+	@GetMapping(value="/service/course" , produces = "application/json")
 	public String getCoursesUniv(@RequestParam("id") int id) {
 		Client client = ClientBuilder.newClient();
 		String url = univRepository.findById(id).get().getUrl();
