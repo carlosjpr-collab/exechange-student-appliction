@@ -31,8 +31,9 @@ import fr.insa.soa.ExchangeSemester.restServices.UserRESTService;
 
 @RunWith(SpringRunner.class)
 @WebMvcTest(UserRESTService.class)
-@ContextConfiguration
-//@ContextConfiguration(classes = {MvcConfigView.class})
+@ContextConfiguration(classes = {MvcConfigView.class})
+//with just this there is a problem
+//@ContextConfiguration
 public class AuthentificationTest {
 	
 	
@@ -52,7 +53,7 @@ public class AuthentificationTest {
 	            .build();
 
 	}
-	/*
+	
 	@Test
 	public void testAnonymous() throws Exception {
 		 mockMvc.perform(get("/insa/home")).andExpect(status().isUnauthorized());
@@ -65,10 +66,10 @@ public class AuthentificationTest {
 	public void testAdminAccessForAccount() throws Exception{
 	     mockMvc.perform(get("/insa/home")).andExpect(status().isOk());
 	}
-	*/
+	
 	//This test will failed because the forbidden message is handled as a HTTP response(200)
 	@Test
-	@WithMockUser(authorities="ROLE_STUDENT")
+	@WithMockUser(authorities="STUDENT")
 	public void testStudentAccessForAdminAccount() throws Exception{
 	     mockMvc.perform(get("/insa/home")).andExpect(status().isForbidden());
 	}

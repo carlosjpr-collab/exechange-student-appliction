@@ -54,5 +54,6 @@ public class UserStudentRESTServiceTest {
 		System.out.println(mvcResult.getResponse());
 		
 		Mockito.verify(userRepostory).findAll();
+		
 	}
 }
