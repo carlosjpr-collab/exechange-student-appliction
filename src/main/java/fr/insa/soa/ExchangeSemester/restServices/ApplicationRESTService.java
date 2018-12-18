@@ -20,6 +20,7 @@ import fr.insa.soa.ExchangeSemester.model.Application;
 import fr.insa.soa.ExchangeSemester.model.University;
 import fr.insa.soa.ExchangeSemester.model.User;
 import fr.insa.soa.ExchangeSemester.model.UserStudent;
+import fr.insa.soa.ExchangeSemester.services.ApplicationService;
 
 @RestController
 public class ApplicationRESTService {
@@ -59,7 +60,9 @@ public class ApplicationRESTService {
 	}
 	
 	@PutMapping(value = "/service/application", produces = "application/json")
-	public void putApplication(@RequestBody Map<String, String> json) {
+	public String putApplication(@RequestBody Map<String, String> json) {
+		ApplicationService applicationService = new ApplicationService(applicationRepository);
+		
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		String login = auth.getName();			//get the username
 		User user = userRepository.findByLogin(login);			//not found exception
@@ -88,11 +91,13 @@ public class ApplicationRESTService {
 		application.setAgreement(agreement);
 		application.setStatus(status);
 		
-		applicationRepository.save(application);
-		
-		//TODO: Return success or not ?
+		if(applicationService.saveApplication(application) == true) {
+			return "{\"success\": \"true\"}";
+		}
+		else {
+			return "{\"success\": \"false\"}";
+		}
 	}
 	
 	//TODO: delete
-	
 }
