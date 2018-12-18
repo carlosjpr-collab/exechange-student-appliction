@@ -1,5 +1,8 @@
 package fr.insa.soa.ExchangeSemester.Test;
 
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+
 import java.util.Collections;
 
 import javax.print.attribute.standard.Media;
@@ -9,7 +12,9 @@ import org.junit.runner.RunWith;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.security.test.context.support.WithMockUser;
@@ -27,8 +32,8 @@ import fr.insa.soa.ExchangeSemester.restServices.UserRESTService;
 import fr.insa.soa.ExchangeSemester.restServices.UserStudentRESTService;
 
 @RunWith(SpringRunner.class)
-@WebMvcTest
-@ContextConfiguration(classes = {MvcConfigView.class})
+@SpringBootTest
+@AutoConfigureMockMvc
 public class UserStudentRESTServiceTest {
 	
 
@@ -37,23 +42,20 @@ public class UserStudentRESTServiceTest {
 	
 	@MockBean
 	UserRepository userRepostory;
+
 	
 	@Test
-	@WithMockUser(authorities="STUDENT")
+	//@WithMockUser(authorities="ROLE_STUDENT")
 	public void FirstTest() throws Exception {
 		
-		Mockito.when(userRepostory.findAll()).thenReturn(
+		when(userRepostory.findAll()).thenReturn(
 				Collections.emptyList()
-		);
+				);
 		
-		MvcResult mvcResult =  mockMvc.perform(
-				MockMvcRequestBuilders.get("/service/userStudent")
-					.accept(MediaType.APPLICATION_JSON)
-		).andReturn();
-		
-		System.out.println(mvcResult.getResponse());
-		
-		Mockito.verify(userRepostory).findAll();
+		MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders.get("/service/userStudent")
+					.accept(MediaType.APPLICATION_JSON)).andReturn();	
+
+		verify(userRepostory).findAll();
 		
 	}
 }

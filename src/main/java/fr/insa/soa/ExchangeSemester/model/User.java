@@ -31,8 +31,9 @@ public class User implements Serializable {
 	private String login;
 	private String password;
 	private int enabled;
+	
 
-	@OneToOne(cascade = { CascadeType.MERGE, CascadeType.REMOVE, CascadeType.REFRESH })
+	@OneToOne(cascade = { CascadeType.MERGE, CascadeType.REMOVE, CascadeType.REFRESH, CascadeType.ALL})
 	@JoinColumn(name = "id_role")
 	private Role role;
 
@@ -117,6 +118,16 @@ public class User implements Serializable {
 		return super.hashCode();
 	}
 	
-	
-
+	/*
+	//For test purpose
+	public User(int id, String lastName, String firstName, String login, String password, int enabled) {
+		this.id = id;
+		this.lastName = lastName;
+		this.firstName = firstName;
+		this.login = login;
+		this.password = password;
+		this.enabled = enabled;
+		//this.role = role;
+	}
+	*/
 }

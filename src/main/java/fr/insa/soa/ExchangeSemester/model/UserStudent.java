@@ -18,7 +18,7 @@ public class UserStudent implements Serializable {
 
 	@Id
 	private Integer id;
-
+	
 	@OneToOne(fetch = FetchType.LAZY)
 	@MapsId()
 	@JoinColumn(name = "id_user")
@@ -50,5 +50,9 @@ public class UserStudent implements Serializable {
 	public void setInsaRanking(Integer insaRanking) {
 		this.insaRanking = insaRanking;
 	}
-
+	
+	public UserStudent() {
+		
+	}
+	
 }
