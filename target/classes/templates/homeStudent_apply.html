@@ -144,16 +144,15 @@ var app = new Vue({
    methods:{
 	   apply: function(id){
 			 console.log(id);
-			 var self=this;
-				this.applyReq={
-				"idUniv" : id,
-				"agreement" : 1,
-				"status" : "wait insa"
-				} ;
 			axios({
 				method: 'put',
-				url: '/service/university',
-				data: self.applyReq,
+				url: '/service/application',
+				data:JSON.stringify({
+					"idUniv" : id,
+					"agreement" : 1,
+					"status" : "wait insa"
+					} ), 
+                headers:{'Content-Type': 'application/json; charset=utf-8'}
 			})},
 		 
 		 openbox: function(index){
