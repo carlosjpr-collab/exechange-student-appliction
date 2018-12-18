@@ -48,7 +48,7 @@
 			<div id="listofUniversity" v-for="(university,index) in filteredList"  @click="openbox(index)">
 				<div class="list-group">
 					<button   type="button" class="list-group-item list-group-item-action">
-						{{university.url}} <i class="fas fa-chevron-right"></i>
+						{{university.name}} <i class="fas fa-chevron-right"></i>
 					</button>
 				</div> <br>
 			</div>
@@ -138,24 +138,23 @@ var app = new Vue({
 		 },
     filteredList() {
       return this.list_university.filter(university => {
-        return university.url.toLowerCase().includes(this.search.toLowerCase())
+        return university.name.toLowerCase().includes(this.search.toLowerCase())
       })
     }},
    methods:{
 	   apply: function(id){
 			 console.log(id);
-			 var self=this;
-				this.applyReq={
-				"idUniv" : id,
-				"agreement" : 1,
-				"status" : "wait insa"
-				} ;
 			axios({
 				method: 'put',
-				url: '/service/university',
-				data: self.applyReq,
+				url: '/service/application',
+				data:JSON.stringify({
+					"idUniv" : id,
+					"agreement" : 1,
+					"status" : "wait insa"
+					} ),
+                headers:{'Content-Type': 'application/json; charset=utf-8'}
 			})},
-		 
+
 		 openbox: function(index){
 			 	var self=this;
 			    this.acceptV=false;

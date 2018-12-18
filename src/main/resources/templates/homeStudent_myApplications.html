@@ -11,6 +11,10 @@
 <!-- awsme icon -->
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
 	integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+<!--Bootstrap vu js  -->
+<link type="text/css" rel="stylesheet" href="//unpkg.com/bootstrap/dist/css/bootstrap.min.css"/>
+<link type="text/css" rel="stylesheet" href="//unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.css"/>
+
 <title></title>
 </head>
 
@@ -28,32 +32,37 @@
 		<div class="row">
 			<br>
 		</div>
-
-	<ul id="HomeStudent_myApplications">
-  <li v-for="app in applications">
-    {{ app.university.name }}
-  </li>
-</ul>
-
+		<template>
+		  <b-table hover :items="items"></b-table>
+		</template>
+</div>
+<!-- vu js -->
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<!-- bootstrap vu js -->
+<script src="//unpkg.com/babel-polyfill@latest/dist/polyfill.min.js"></script>
+<script src="//unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.js"></script>
+
 <script type="text/javascript">
 var app = new Vue({
    el: '#HomeStudent_myApplications',
    data: {
 		 applications:"par default",
-		 search:"",
-         list_university: [],
-		 acceptV:false,
-		 showUniversityActive:false
+		 items:[]
 			 },
    methods:{
 		 getStarting: function() {
 	  	self=this;
       axios.get('/service/application',{port:8080})
-  .then(function (response) {
-   console.log(response);
-	 self.applications=response.data;
+  	.then(function (response) {
+		for(var key in response.data) {
+		  self.items.push(
+				{
+					universityName:  response.data[key].university.name,
+					statusInsa: 'waiting',
+					statusUniversity:"waiting"
+				})
+		}
   })
   .catch(function (error) {
     // handle error
