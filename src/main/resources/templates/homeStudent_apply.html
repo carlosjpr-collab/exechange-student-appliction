@@ -52,14 +52,15 @@
 </div>
 
 		<div class="row"  >
-
-			<div id="listofUniversity" v-for="(university,index) in filteredList"  @click="openbox(index)" class="col-md-4 .col-lg-4">
+			<div  class="col-md-4 .col-lg-4">
+			<div id="listofUniversity" v-for="(university,index) in filteredList"  @click="openbox(index)">
 				<div class="list-group">
 					<button   type="button" class="list-group-item list-group-item-action">
 						{{university.url}} <i class="fas fa-chevron-right"></i>
 					</button>
-				</div>
+				</div> <br>
 			</div>
+		</div>
 
 			<div  class="col-md-8 .col-lg-8">
 				<div v-if="showUniversityActive" class="list-group-item">
@@ -77,17 +78,45 @@
 					<div>
 						Website: <a v-bind:href="website">{{universityUrl}}</a>
 					</div>
-					<br>
+					<br><!-- TODO: add Courses -->
 					<div>Courses offered: {{universityCourses}}
-					</div>
+					</div> <br>
+
+					<div class="checkbox">
+						You must share your information with the university that you will apply.
+						<br>
+		      <label><input v-model='acceptV' type="checkbox" value=""> Accept sharing policy </input></label>
+	        </div>
 					<div>
-						<button type="button" class="btn btn-primary" @click="apply(universityId)"> Apply</button>
+						<button type="button" :disabled="acceptPolicy" data-toggle="modal" data-target="#exampleModal" class="btn btn-primary" @click="apply(universityId)"> Apply</button>
 					</div>
 				</div>
 			</div>
-
 		</div>
 	</div>
+
+	<!-- Modal for Policy -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel"> Confirmation message</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Your application has been submitted! <br>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
 	<footer class="footer">
 		<nav class="navbar fixed-bottom navbar-expand-sm navbar-light bg-light">
 			<p>&copy; Team 2018</p>
@@ -104,15 +133,18 @@ var app = new Vue({
 		 universityName:"par default",
 		 search:"",
      list_university: [],
+		 acceptV:false,
 		 universityId:"par default",
 		 universityCountry:"par default",
 		 universityCity:"par default",
 		 universityUrl:"par default",
 		 universityCourses:"par default",
 		 showUniversityActive:false
-
 			 },
 	 computed: {
+		 acceptPolicy(){
+			return !this.acceptV;
+		 },
     filteredList() {
       return this.list_university.filter(university => {
         return university.url.toLowerCase().includes(this.search.toLowerCase())
@@ -123,6 +155,7 @@ var app = new Vue({
 // TODO: save in the data base
 			 console.log(id);},
 		 openbox: function(index){
+			  this.acceptV=false;
 			 	this.showUniversityActive=true;
 				this.universityId=this.list_university[index].id;
 				this.universityCity=this.list_university[index].city;
@@ -143,7 +176,6 @@ var app = new Vue({
   .then(function () {
     // always executed
   });
-
        }
  },
  beforeMount(){
@@ -151,7 +183,6 @@ var app = new Vue({
  },
  })
 </script>
-
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
