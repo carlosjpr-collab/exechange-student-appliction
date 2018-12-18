@@ -25,66 +25,35 @@
 		<div class="row">
 			<br>
 		</div>
+		<div class="row">
+			<br>
+		</div>
+
+	<ul id="HomeStudent_myApplications">
+  <li v-for="app in applications">
+    {{ app.university.name }}
+  </li>
+</ul>
 
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script type="text/javascript">
 var app = new Vue({
-   el: '#HomeStudent_apply',
+   el: '#HomeStudent_myApplications',
    data: {
-		 universityName:"par default",
+		 applications:"par default",
 		 search:"",
          list_university: [],
 		 acceptV:false,
-		 universityId:"par default",
-		 universityCountry:"par default",
-		 universityCity:"par default",
-		 universityUrl:"par default",
-		 universityCourses:"par default",
 		 showUniversityActive:false
 			 },
-	 computed: {
-		 acceptPolicy(){
-			return !this.acceptV;
-		 },
-    filteredList() {
-      return this.list_university.filter(university => {
-        return university.url.toLowerCase().includes(this.search.toLowerCase())
-      })
-    }},
    methods:{
-	   apply: function(id){
-			 console.log(id);
-			axios({
-				method: 'put',
-				url: '/service/application',
-				data:JSON.stringify({
-					"idUniv" : id,
-					"agreement" : 1,
-					"status" : "wait insa"
-					} ),
-                headers:{'Content-Type': 'application/json; charset=utf-8'}
-			})},
-
-		 openbox: function(index){
-			 	var self=this;
-			    this.acceptV=false;
-			 	this.showUniversityActive=true;
-			 	this.universityName=this.list_university[index].name;
-				this.universityId=this.list_university[index].id;
-				this.universityCity=this.list_university[index].city;
-				this.universityUrl=this.list_university[index].url;
-				this.universityCountry=this.list_university[index].country;
-				axios.get('/service/course?id='+this.list_university[index].id,{port:8080})
-	      .then(function (response) {
-	    	  self.universityCourses=response.data;
-			})},
-
 		 getStarting: function() {
 	  	self=this;
       axios.get('/service/application',{port:8080})
   .then(function (response) {
    console.log(response);
+	 self.applications=response.data;
   })
   .catch(function (error) {
     // handle error
