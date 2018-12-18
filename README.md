@@ -42,7 +42,9 @@ https://exchangesemester.cfapps.io/
                 "idUniv" : "xxx (int) ", <br>
                 "agreement" : "xxx (0 or 1)", <br>
                 "status" : "xxxxx (string)" <br>
-                }
+                } <br>
+                Response : <br> "success" : true --> the application is stored, no problem occured <br>
+                 "success": "false" --> the user has already applied to this university : application not stored
             </li>
         </ul>
       </li>
