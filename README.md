@@ -16,8 +16,35 @@ https://exchangesemester.cfapps.io/
 <div>
   All RESTFul services accessible via /service/XXXX
   <ul>
-    <li> /service/university (GET : Return all universities - PUT : Save a new university into the DB) </li>
-    <li> /service/course?id=id_univ (GET : Return the courses for the university with id=id_univ) </li>
-    <li> /service/application (GET : Return all applications for the connected user - PUT : Save a new application for the connected user </li>
+    <li> /service/university
+        <ul>
+            <li>
+                GET : Return all universities
+            </li>
+            <li>
+                PUT : Save a new university into the DB
+            </li>
+        </ul>
+    </li>
+    <li> /service/course?id=id_univ
+       <ul>
+           <li>
+               GET : Return the courses for the university with id=id_univ
+           </li>
+        </ul>
+    </li>
+    <li> /service/application 
+        <ul>
+            <li> GET : Return all applications for the connected user</li>
+            <li> PUT : Save a new application for the connected user <br>
+                JSON RequestBody : <br>
+                {  <br> 
+                "idUniv" : "xxx (int) ", <br>
+                "agreement" : "xxx (0 or 1)", <br>
+                "status" : "xxxxx (string)" <br>
+                }
+            </li>
+        </ul>
+      </li>
   </ul>
 </div>

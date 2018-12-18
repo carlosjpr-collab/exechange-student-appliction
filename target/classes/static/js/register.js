@@ -13,6 +13,7 @@ var app = new Vue({
     endpoint: '',
     countryUniv: '',
     cityUniv: '',
+    nameUniv: '',
     univs: [],
     idUserCreated: '',
     showAddUniv: false
@@ -84,7 +85,8 @@ var app = new Vue({
         //id - name ???
         country: this.countryUniv,
         city: this.cityUniv,
-        url: this.endpoint
+        url: this.endpoint,
+        name: this.nameUniv
       };
       axios
         .put(document.location.href.substring( 0 ,document.location.href.lastIndexOf("/")) + '/service/university', json)

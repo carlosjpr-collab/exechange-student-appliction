@@ -24,6 +24,8 @@ public class University implements Serializable {
 	private String city;
 	
 	private String url;
+	
+	private String name;
 
 	public Integer getId() {
 		return id;
@@ -57,4 +59,12 @@ public class University implements Serializable {
 		this.url = url;
 	}
 
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+	
 }
