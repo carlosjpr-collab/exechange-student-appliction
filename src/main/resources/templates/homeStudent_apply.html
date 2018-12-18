@@ -160,7 +160,12 @@ var app = new Vue({
 				this.universityId=this.list_university[index].id;
 				this.universityCity=this.list_university[index].city;
 				this.universityUrl=this.list_university[index].url;
-				this.universityCountry=this.list_university[index].country;},
+				this.universityCountry=this.list_university[index].country;
+				axios.get(' /service/course?id='+this.list_university[index].id;,{port:8080})
+	      .then(function (response) {
+					console.log(response);
+			}},
+
 		 getStarting: function() {
 	  	self=this;
       axios.get('/service/university',{port:8080})
