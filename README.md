@@ -9,8 +9,7 @@ localhost:8080/...
 https://exchangesemester.cfapps.io/
 
 *** Pour push l'application sur le cloud ***
-    TODO
-
+    
 
 <h2> REST Api </h2>
 <div>
