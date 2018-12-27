@@ -1,0 +1,10 @@
+body {
+	background-image:url("/images/exchange.png");
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-position: center;
+	background-size: cover
+}
+.container-fluid {
+	style="background-color: white; margin-top: 5%; height: 35em"
+}
