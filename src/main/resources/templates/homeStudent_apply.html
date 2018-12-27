@@ -43,7 +43,7 @@
 				<div id="listofUniversity" v-for="(university,index) in filteredList" @click="openbox(index)">
 					<div class="list-group">
 						<button type="button" class="list-group-item list-group-item-action">
-							{{university.name}} <i class="fas fa-chevron-right"></i>
+							{{university.name}} </i>
 						</button>
 					</div>
 					<br>
@@ -64,7 +64,7 @@
 						City: {{universityCity}} <br>
 					</div>
 					<div>
-						Website: <a v-bind:href="website">{{universityUrl}}</a>
+						Website: <a v-bind:href="universityUrl">{{universityUrl}}</a>
 					</div>
 					<div>
 						Courses offered:
@@ -101,7 +101,6 @@
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-
 				</div>
 			</div>
 		</div>
