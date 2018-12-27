@@ -2,6 +2,8 @@
 mysql -h us-cdbr-iron-east-01.cleardb.net -u be304fcc9fbc70 -p
 password : xxxxxxxx
 
+*** Accès au serveur MySQL local ***
+
 *** Accès à l'application en local ***
 localhost:8080/...
 
