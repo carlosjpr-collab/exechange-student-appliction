@@ -1,27 +1,17 @@
 <!doctype html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
-<!-- Required meta tags -->
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-<!-- Bootstrap CSS -->
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
-	integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-<!-- awsme icon -->
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
-	integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
-<!--Bootstrap vu js  -->
-<link type="text/css" rel="stylesheet" href="//unpkg.com/bootstrap/dist/css/bootstrap.min.css"/>
-<link type="text/css" rel="stylesheet" href="//unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.css"/>
-
-<title></title>
+<meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="stylesheet" href="/css/bootstrap/bootstrap.min.css">
+<link rel="stylesheet" href="/css/bootstrapVue/bootstrap-vue.css"/>
+<title>Student applications</title>
 </head>
-
+<body>
 <div id="HomeStudent_myApplications" class="container-fluid">
 	<div class="row">
-  <div th:insert="~{nav :: copy}"></div>	</div>
-
+      <div th:insert="~{nav :: copy}">
+      </div>	
+    </div>
 	<div class="container">
 		<div class="row">
 			<br>
@@ -36,55 +26,17 @@
 		  <b-table hover :items="items"></b-table>
 		</template>
 </div>
-<!-- vu js -->
-<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-<!-- bootstrap vu js -->
-<script src="//unpkg.com/babel-polyfill@latest/dist/polyfill.min.js"></script>
-<script src="//unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.js"></script>
+</div>
+</div>
 
-<script type="text/javascript">
-var app = new Vue({
-   el: '#HomeStudent_myApplications',
-   data: {
-		 applications:"par default",
-		 items:[]
-			 },
-   methods:{
-		 getStarting: function() {
-	  	self=this;
-      axios.get('/service/application',{port:8080})
-  	.then(function (response) {
-		for(var key in response.data) {
-		  self.items.push(
-				{
-					universityName:  response.data[key].university.name,
-					statusInsa: 'waiting',
-					statusUniversity:"waiting"
-				})
-		}
-  })
-  .catch(function (error) {
-    // handle error
-    console.log(error);
-  })
-  .then(function () {
-    // always executed
-  });
-       }
- },
- beforeMount(){
-    this.getStarting()
- },
- })
-</script>
-<!-- Optional JavaScript -->
-<!-- jQuery first, then Popper.js, then Bootstrap JS -->
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-	integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
-	integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
-	integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="/js/axios/axios.min.js"></script>
+<script type="text/javascript" src="/js/vuejs/vue.js"></script>
+<script type="text/javascript" src="/js/bootstrapVuejs/polyfill.min.js"> </script>
+<script type="text/javascript" src="/js/bootstrapVuejs/bootstrap-vue.js"></script>
+<script type="text/javascript" src="/js/vuejs/pages/homeStudent_myApplications.js"> </script>
+<script type="text/javascript" src="/js/jQuery/jquery-3.3.1.slim.min.js"></script>
+<script type="text/javascript" src="/js/popper/popper.min.js"></script>
+<script type="text/javascript" src="/js/bootstrap/bootstrap.min.js"></script>
 </body>
 </html>
