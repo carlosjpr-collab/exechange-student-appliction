@@ -1,58 +1,98 @@
 <!doctype html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
-<!-- Required meta tags -->
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-<!-- Bootstrap CSS -->
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
-	integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-
-
-<title></title>
+<meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="stylesheet" href="/css/bootstrap/bootstrap.min.css">
+<link rel="stylesheet" href="/css/pages/homeStudent_myProfile.css">
+<title> Student profile</title>
 </head>
 <body>
-
 	<div class="container-fluid">
 		<div class="row">
-
 			<div th:insert="~{nav :: copy}"></div>
 		</div>
-
 	</div>
-	<br>
-	<br>
-	<br>
-
-
-
 	<div class="container">
-		<main role="main">
-		<div class="gauche"></div>
-		<div class="jumbotron">
-			<h1>Welcome Student !</h1>
-			<p class="lead">This example is a quick exercise to illustrate how fixed to top navbar works. As you scroll, it
-				will remain fixed to the top of your browser's viewport.</p>
+    <div class="row">
+    <h2>My Profile</h2>
+    </div>
+    <div class='row'> 
+    <p class="lead">Your information below</p>
+    </div>
+		  <div class="row">
+		      <h4>Personal information</h4>
 		</div>
-		</main>
-	</div>
+        <div class="row">
+          <div class="col-md-3 mb-2">
+            <label for="firstName">First name</label>
+            <input type="text" class="form-control" id="firstName" placeholder="" required="">
+          </div>
+          <div class="col-md-3 mb-2">
+            <label for="lastName">Last name</label>
+            <input type="text" class="form-control" id="lastName" placeholder="" required="">
+          </div>
+          <div class="col-md-3 mb-2">
+             <label for="email">Email</label>
+             <div class="input-group">
+             <input type="email" class="form-control" id="email" placeholder="email" required="">
+          </div>
+          </div>
+        </div>
+        
+        <div class="row">
+		<h4 class="mb-3">Education information</h4> 
+		</div>
+		
+		<form class="needs-validation" novalidate="">
+			<div class="row">
+			  <div class="col-md-3 mb-3">
+				<label for="year">Year of study for exchange</label>
+				<select id="year" class="custom-select d-block w-100" required="">
+					<option value="">Choose...</option>
+					<option>3A</option>
+					<option>4A</option>
+					<option>5A</option>
+				</select>
+			  </div>
 
-
+			  <div class="col-md-3 mb-3">
+				<label for="department">Department</label>
+				 <select id="department" class="custom-select d-block w-100" required="">
+					<option value="">Choose...</option>
+					<option>GB</option>
+					<option>GC</option>
+					<option>GEI</option>
+					<option>GM</option>
+					<option>GMM</option>
+					<option>GP</option>
+					<option>GPE</option>
+				</select>
+			  </div>
+			     <div class="col-md-3 mb-3">
+			         <label for="ranking">INSA Ranking</label>
+			         <div class="input-group">
+				     <input type="racking" class="form-control" id="ranking" placeholder="example : 51,8%" required="">
+			         </div>
+                 </div>
+			</div>
+			  <div class="row">
+			  <div  class="col-md-3 mb-3"> 
+			  <button class="btn btn-primary btn-lg btn-block" type="submit">Edit information</button>
+	          </div>
+			  </div> 
+			
+      </form>
+    </div>
 	<footer class="footer">
 		<nav class="navbar fixed-bottom navbar-expand-sm navbar-light bg-light">
 			<p>&copy; Team 2018</p>
 		</nav>
 	</footer>
-	</div>
 
-	<!-- Optional JavaScript -->
-	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
-	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
-		integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
-		integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-</body>
+<script type="text/javascript" src="/js/vuejs/vue.js"></script>
+<script type="text/javascript" src="/js/axios/axios.min.js"></script>
+<script type="text/javascript" src="/js/jQuery/jquery-3.3.1.slim.min.js"></script>
+<script type="text/javascript" src="/js/popper/popper.min.js"></script>
+<script type="text/javascript" src="/js/bootstrap/bootstrap.min.js"></script>
+
 </html>
