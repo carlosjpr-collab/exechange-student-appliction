@@ -29,7 +29,7 @@ var app = new Vue({
 			var json = {
 							"idUniv" : id,
 							"agreement" : 1,
-							"status" : "wait insa !"
+							"status" : "wait for university"
 			};
 			axios
 				.put('/service/application', json)
