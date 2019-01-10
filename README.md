@@ -37,7 +37,7 @@ https://exchangesemester.cfapps.io/
     </li>
     <li> /service/application 
         <ul>
-            <li> GET : Return all applications for the connected user</li>
+            <li> GET : Return all applications for the connected user/university or INSA</li>
             <li> PUT : Save a new application for the connected user <br>
                 JSON RequestBody : <br>
                 {  <br> 
