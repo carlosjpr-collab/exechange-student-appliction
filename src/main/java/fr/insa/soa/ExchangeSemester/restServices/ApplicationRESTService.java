@@ -16,88 +16,102 @@ import fr.insa.soa.ExchangeSemester.dao.ApplicationRepository;
 import fr.insa.soa.ExchangeSemester.dao.UniversityRepository;
 import fr.insa.soa.ExchangeSemester.dao.UserRepository;
 import fr.insa.soa.ExchangeSemester.dao.UserStudentRepository;
+import fr.insa.soa.ExchangeSemester.dao.UserUniversityRepository;
 import fr.insa.soa.ExchangeSemester.model.Application;
 import fr.insa.soa.ExchangeSemester.model.University;
 import fr.insa.soa.ExchangeSemester.model.User;
 import fr.insa.soa.ExchangeSemester.model.UserStudent;
+import fr.insa.soa.ExchangeSemester.model.UserUniversity;
 import fr.insa.soa.ExchangeSemester.services.ApplicationService;
 
 @RestController
 public class ApplicationRESTService {
 	@Autowired
 	UniversityRepository univRepository;
-	
+
 	@Autowired
 	private UserRepository userRepository;
-	
+
 	@Autowired
 	private UserStudentRepository userStudentRepository;
 	
 	@Autowired
+	private UserUniversityRepository userUniversityRepository;
+
+	@Autowired
 	private ApplicationRepository applicationRepository;
-	
+
 	@GetMapping(value = "/service/application", produces = "application/json")
 	public List<Application> getApplications() {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		String login = auth.getName();			//get the username
-		User user = userRepository.findByLogin(login);			//not found exception
+		List<Application> listApplication = null;
 		
+		String login = auth.getName(); // get the username
+		User user = userRepository.findByLogin(login); // not found exception
 		int idUser = user.getId();
-		
-		Optional<UserStudent> optStudent = userStudentRepository.findById(user.getId());	
-		UserStudent student = null;
-		if(optStudent.isPresent()) {
-			student = optStudent.get();
-			System.out.println(student.toString());
+
+		if (auth.getAuthorities().toString().equals("[ROLE_STUDENT]")) {
+			Optional<UserStudent> optStudent = userStudentRepository.findById(user.getId());
+			UserStudent student = null;
+			if (optStudent.isPresent()) {
+				student = optStudent.get();
+				System.out.println(student.toString());
+			} else {
+				System.out.println("no user ?");
+			}
+
+			 listApplication = applicationRepository.findAllByStudent(student);   //all the applications for the specified student
+			 		}
+		else if(auth.getAuthorities().toString().equals("[ROLE_UNIVERSITY]")) {
+			Optional<UserUniversity> optUserUniversity = userUniversityRepository.findById(user.getId());
+			//TODO: OPTIONAL TO USERUNIV
+			
+			University univ = optUserUniversity.get().getUniversity();
+			listApplication = applicationRepository.findAllByUniversity(univ);  //all the applications for the specified university
 		}
-		else {
-			System.out.println("no user ?");
-		}	
-		
-		List<Application> listApplication = applicationRepository.findAllByStudent(student);
-		
+		else if(auth.getAuthorities().toString().equals("[ROLE_INSA]")) {
+			listApplication = applicationRepository.findAll(); //INSA has to see all the applications
+		}
+
 		return listApplication;
 	}
-	
+
 	@PutMapping(value = "/service/application", produces = "application/json")
 	public String putApplication(@RequestBody Map<String, String> json) {
 		ApplicationService applicationService = new ApplicationService(applicationRepository);
-		
+
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		String login = auth.getName();			//get the username
-		User user = userRepository.findByLogin(login);			//not found exception
-		
+		String login = auth.getName(); // get the username
+		User user = userRepository.findByLogin(login); // not found exception
+
 		int idUser = user.getId();
 		int idUniv = Integer.parseInt(json.get("idUniv"));
 		int agreement = Integer.parseInt(json.get("agreement"));
 		String status = json.get("status");
-		
-		Optional<UserStudent> optStudent = userStudentRepository.findById(idUser);	
+
+		Optional<UserStudent> optStudent = userStudentRepository.findById(idUser);
 		UserStudent student = null;
-		if(optStudent.isPresent()) {
+		if (optStudent.isPresent()) {
 			student = optStudent.get();
 			System.out.println(student.toString());
-		}
-		else {
+		} else {
 			System.out.println("no user ?");
-		}	
-		
-		
+		}
+
 		Optional<University> university = univRepository.findById(idUniv);
-		
+
 		Application application = new Application();
 		application.setStudent(student);
-		application.setUniversity(university.get());		//see if the university is present ??
+		application.setUniversity(university.get()); // see if the university is present ??
 		application.setAgreement(agreement);
 		application.setStatus(status);
-		
-		if(applicationService.saveApplication(application) == true) {
+
+		if (applicationService.saveApplication(application) == true) {
 			return "{\"success\": \"true\"}";
-		}
-		else {
+		} else {
 			return "{\"success\": \"false\"}";
 		}
 	}
-	
-	//TODO: delete
+
+	// TODO: delete
 }

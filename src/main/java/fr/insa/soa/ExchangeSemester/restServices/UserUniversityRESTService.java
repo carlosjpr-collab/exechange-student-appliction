@@ -38,14 +38,17 @@ public class UserUniversityRESTService {
 	public String saveUserUniv(@RequestBody Map<String, String> json) {
 		Optional<User> userOpt = userRepository.findById(Integer.parseInt(json.get("idUser")));
 		User user = userOpt.get();
+		System.out.println("jai mon user "+ user.toString());
 		Optional<University> univOpt = univRepository.findById(Integer.parseInt(json.get("idUniv")));
 		University univ = univOpt.get();
-		
+		System.out.println("jai mon univ "+ univ.toString());
+
 		UserUniversity userUniv = new UserUniversity();
 		userUniv.setUser(user);
 		userUniv.setUniversity(univ);
 		userUnivRepository.save(userUniv);
 		
+		System.out.println("jai save");
 		//catch SQL Exceptions	
 		
 		return "{\"success\": \"true\"}";
