@@ -48,6 +48,15 @@ https://exchangesemester.cfapps.io/
                 Response : <br> "success" : true --> the application is stored, no problem occured <br>
                  "success": "false" --> the user has already applied to this university : application not stored
             </li>
+            <li> POST : Update the status of an application <br>
+                JSON RequestBody : <br>
+                { <br>
+                "type" : "response", <br>
+                "idApplication" : "xxx (int)", <br>
+                "response" : "OK" or "NOK" <br>
+                } <br>
+                Response : TODO
+            </li>
         </ul>
       </li>
   </ul>
