@@ -4,6 +4,8 @@
 <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link rel="stylesheet" href="/css/bootstrap/bootstrap.min.css">
 <link rel="stylesheet" href="/css/bootstrapVue/bootstrap-vue.css"/>
+<link rel="stylesheet" href="/css/loader.css"/>
+
 <title>Student applications</title>
 </head>
 <body>
@@ -12,6 +14,7 @@
       <div th:insert="~{nav :: copy}">
       </div>	
     </div>
+    
 	<div class="container">
 		<div class="row">
 			<br>
@@ -20,7 +23,10 @@
 			<br>
 		</div>
 		<div class="row">
-			<br>
+			<br>	
+		</div>
+		<div class='row'>
+			<div id="loader" v-if="showloader"></div>
 		</div>
 		<template>
 		  <b-table hover :items="items"></b-table>
