@@ -2,7 +2,8 @@ var app = new Vue({
    el: '#HomeStudent_myApplications',
    data: {
 		 applications:"par default",
-		 items:[]
+		 items:[],
+		 showloader: true
 			 },
    methods:{
 		 getStarting: function() {
@@ -17,6 +18,7 @@ var app = new Vue({
 					statusUniversity:"waiting"
 				})
 		}
+		self.showloader=false;
   })
   .catch(function (error) {
     // handle error

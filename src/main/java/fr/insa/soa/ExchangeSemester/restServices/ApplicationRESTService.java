@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -110,6 +111,36 @@ public class ApplicationRESTService {
 			return "{\"success\": \"true\"}";
 		} else {
 			return "{\"success\": \"false\"}";
+		}
+	}
+	
+	@PostMapping("/service/application")
+	public void acceptRefuseApplication(@RequestBody Map<String, String> json) {
+		if(json.get("type").toString().equals("response")) {
+			int idApplication = Integer.parseInt(json.get("idApplication"));
+			String response = json.get("response").toString();
+			
+			Optional<Application> appOpt = applicationRepository.findById(idApplication);
+			Application app = appOpt.get();
+			String type = "";
+			
+			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+			if(auth.getAuthorities().toString().equals("[ROLE_UNIVERSITY]")){
+				type = "university";
+			}
+			else {
+				type = "INSA";
+			}
+			
+			
+			if(response.equals("OK")) {
+				app.setStatus("accepted by "+ type);
+			}
+			else {
+				app.setStatus("refused by "+ type);
+			}
+			
+			applicationRepository.save(app);
 		}
 	}
 
