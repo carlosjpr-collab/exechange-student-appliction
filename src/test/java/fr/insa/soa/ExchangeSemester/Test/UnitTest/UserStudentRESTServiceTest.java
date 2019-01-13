@@ -1,7 +1,12 @@
-package fr.insa.soa.ExchangeSemester.Test;
+package fr.insa.soa.ExchangeSemester.Test.UnitTest;
 
+import static org.hamcrest.CoreMatchers.is;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import java.util.Collections;
 
@@ -52,10 +57,21 @@ public class UserStudentRESTServiceTest {
 				Collections.emptyList()
 				);
 		
-		MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders.get("/service/userStudent")
-					.accept(MediaType.APPLICATION_JSON)).andReturn();	
+		/*
+		mockMvc.perform(get("/service/userStudent")
+					.accept(MediaType.APPLICATION_JSON))
+					.andExpect()
+					.andExpect(content().contentType(MediaType.APPLICATION_JSON))
+					  .andExpect(jsonPath("$.person.name").value("Jason"));
+		*/
+		 mockMvc.perform(get("/service/userStudent"))
+		   .andExpect(status().isOk())
+		   .andExpect(content().contentType("application/json;charset=UTF-8"))
+		   .andExpect(jsonPath("$.id", is(1)));
+		 
 
-		verify(userRepostory).findAll();
+		//verify(mvcResult).getResponse()
+		//verify(userRepostory).findAll();
 		
 	}
 }
