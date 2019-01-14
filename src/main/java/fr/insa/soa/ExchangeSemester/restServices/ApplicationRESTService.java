@@ -124,7 +124,7 @@ public class ApplicationRESTService {
 		if(json.get("type").toString().equals("response")) {
 			int idApplication = Integer.parseInt(json.get("idApplication"));
 			String response = json.get("response").toString();
-			String login = json.get("idUser"); // get the username
+			int idUser = Integer.parseInt(json.get("idUser")); // get the username
 
 			Optional<Application> appOpt = applicationRepository.findById(idApplication);
 			Application app = appOpt.get();
@@ -132,7 +132,7 @@ public class ApplicationRESTService {
 			
 			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 			
-			User user = userRepository.findByLogin(login); // not found exception
+			Optional<User> user = userRepository.findById(idUser); // not found exception
 			
 			if(auth.getAuthorities().toString().equals("[ROLE_UNIVERSITY]")){
 				type = "university";
@@ -142,7 +142,7 @@ public class ApplicationRESTService {
 			}
 			
 			Notification notif = new Notification();
-			notif.setUser(user);
+			notif.setUser(user.get());
 			
 			
 			if(response.equals("OK")) {

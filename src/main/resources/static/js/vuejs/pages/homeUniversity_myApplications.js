@@ -14,8 +14,9 @@ var app = new Vue({
 			 },
    methods:{
 	   accept:function(item){
-		   self.showloader=true;
 		   var self=this;
+		   self.showloader=true;
+		   console.log(item);
 		   axios.post('/service/application', {
 			   "type" : "response", 
 			   "idApplication" : item.appId, 

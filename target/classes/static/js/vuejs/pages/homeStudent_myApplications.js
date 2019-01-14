@@ -3,6 +3,7 @@ var app = new Vue({
    data: {
 		 applications:"par default",
 		 items:[],
+		 appText:'',
 		 showloader: true
 			 },
    methods:{
@@ -16,6 +17,12 @@ var app = new Vue({
 					universityName:  response.data[key].university.name,
 					status: response.data[key].status
 				})
+		}
+		if(self.items.length==0){
+			self.appText='You do not have any applications: '
+		}
+		else {
+			self.appText='You have the following applications :'
 		}
 		self.showloader=false;
   })

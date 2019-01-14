@@ -28,8 +28,9 @@
 		<div class='row'>
 		<img class="animated-gif" v-if="showloader" src="/images/loader.gif">
 		</div>
+		<p v-if="!showloader" v-cloak>{{appText}} </p>
 		<template>
-		  <b-table hover :items="items"></b-table>
+		  <b-table  v-if="!showloader" hover :items="items"></b-table>
 		</template>
 </div>
 </div>
