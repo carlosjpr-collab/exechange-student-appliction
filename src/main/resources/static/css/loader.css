@@ -5,3 +5,7 @@ img.animated-gif{
   margin-right:auto;
   float :none;
 }
+
+[v-cloak] {
+  display: none;
+}
