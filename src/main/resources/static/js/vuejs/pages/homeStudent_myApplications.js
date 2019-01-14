@@ -12,10 +12,9 @@ var app = new Vue({
   	.then(function (response) {
 		for(var key in response.data) {
 		  self.items.push(
-				{
+				{   
 					universityName:  response.data[key].university.name,
-					statusInsa: 'waiting',
-					statusUniversity:"waiting"
+					status: response.data[key].status
 				})
 		}
 		self.showloader=false;

@@ -14,11 +14,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import fr.insa.soa.ExchangeSemester.dao.ApplicationRepository;
+import fr.insa.soa.ExchangeSemester.dao.NotificationRepository;
 import fr.insa.soa.ExchangeSemester.dao.UniversityRepository;
 import fr.insa.soa.ExchangeSemester.dao.UserRepository;
 import fr.insa.soa.ExchangeSemester.dao.UserStudentRepository;
 import fr.insa.soa.ExchangeSemester.dao.UserUniversityRepository;
 import fr.insa.soa.ExchangeSemester.model.Application;
+import fr.insa.soa.ExchangeSemester.model.Notification;
 import fr.insa.soa.ExchangeSemester.model.University;
 import fr.insa.soa.ExchangeSemester.model.User;
 import fr.insa.soa.ExchangeSemester.model.UserStudent;
@@ -41,6 +43,9 @@ public class ApplicationRESTService {
 
 	@Autowired
 	private ApplicationRepository applicationRepository;
+	
+	@Autowired
+	private NotificationRepository notificationRepository;
 
 	@GetMapping(value = "/service/application", produces = "application/json")
 	public List<Application> getApplications() {
@@ -125,6 +130,10 @@ public class ApplicationRESTService {
 			String type = "";
 			
 			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+			
+			String login = auth.getName(); // get the username
+			User user = userRepository.findByLogin(login); // not found exception
+			
 			if(auth.getAuthorities().toString().equals("[ROLE_UNIVERSITY]")){
 				type = "university";
 			}
@@ -132,14 +141,20 @@ public class ApplicationRESTService {
 				type = "INSA";
 			}
 			
+			Notification notif = new Notification();
+			notif.setUser(user);
+			
 			
 			if(response.equals("OK")) {
 				app.setStatus("accepted by "+ type);
+				notif.setDescription("Your application has been accepted by "+ type);
 			}
 			else {
 				app.setStatus("refused by "+ type);
+				notif.setDescription("Your application has been refused by "+ type);
 			}
 			
+			notificationRepository.save(notif);
 			applicationRepository.save(app);
 		}
 	}
