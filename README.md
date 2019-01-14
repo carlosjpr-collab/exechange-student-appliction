@@ -53,6 +53,7 @@ https://exchangesemester.cfapps.io/
                 { <br>
                 "type" : "response", <br>
                 "idApplication" : "xxx (int)", <br>
+                "idUser" : "xxx(int)", <br>
                 "response" : "OK" or "NOK" <br>
                 } <br>
                 Response : TODO
