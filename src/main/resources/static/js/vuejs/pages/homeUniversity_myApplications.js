@@ -14,9 +14,32 @@ var app = new Vue({
 			 },
    methods:{
 	   accept:function(item){
-		   console.log(item)
+		   var self=this;
+		   axios.post('/service/application', {
+			   "type" : "response", 
+			   "idApplication" : item.appId, 
+			   "response" : "OK" 
+			  })
+			  .then(function (response) {
+				location.reload();
+			    console.log(response);
+			  })
+			  .catch(function (error) {
+			    console.log(error);
+			  });
 	   },
 	   refuse:function(item){
+		   axios.post('/service/application', {
+			   "type" : "response", 
+			   "idApplication" :item.appId , 
+			   "response" : "NOK" 
+			  })
+			  .then(function (response) {
+			    console.log(response);
+			  })
+			  .catch(function (error) {
+			    console.log(error);
+			  });
 		   console.log(item)
 	   },
 		 getStarting: function() {
@@ -31,8 +54,7 @@ var app = new Vue({
 					InsaRanking: response.data[key].student.insaRanking,
 					status: response.data[key].status,
 					email:response.data[key].student.user.login,
-					url:'<img  src="https://img.icons8.com/cotton/32/000000/checkmark.png">'
-						+'<img src="https://img.icons8.com/dusk/32/000000/delete-sign.png">'
+					appId:response.data[key].id
 				})
 		}
 		self.showloader=false;
