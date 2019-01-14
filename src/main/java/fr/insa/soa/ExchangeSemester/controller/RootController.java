@@ -20,7 +20,7 @@ public class RootController {
 			case "[ROLE_STUDENT]":
 				return "redirect:/student/home";
 			case "[ROLE_UNIVERSITY]":
-				return "redirect:/univ/home";
+				return "redirect:/university/home";
 			case "[ROLE_INSA]":
 				return "redirect:/insa/home";
 			default:
