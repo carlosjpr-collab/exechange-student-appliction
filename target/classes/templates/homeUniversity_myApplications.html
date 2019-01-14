@@ -1,0 +1,80 @@
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="stylesheet" href="/css/bootstrap/bootstrap.min.css">
+<link rel="stylesheet" href="/css/bootstrapVue/bootstrap-vue.css"/>
+<link rel="stylesheet" href="/css/loader.css"/>
+
+<title>Student applications</title>
+</head>
+<body>
+<div id="Homeuniversity_myApplications" class="container-fluid">
+	<div class="row">
+      <div th:insert="~{nav :: copy}">
+      </div>	
+    </div>
+    
+	<div class="container">
+		<div class="row">
+			<br>
+		</div>
+		<div class="row">
+			<br>
+		</div>
+		<div class="row">
+			<br>	
+		</div>
+		<div class='row'>
+		<img class="animated-gif" v-if="showloader" src="/images/loader.gif">
+		
+		
+ <table class="table table-hover"  v-if="!showloader" v-cloak>
+    <thead>
+      <tr>
+        <th>FirstName</th>
+        <th>LastName</th>
+         <th>Email</th>
+         <th>InsaRanking</th>
+         <th>Status</th>
+         <th> University Acceptance</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr  v-for= "item in items"   data-toggle="modal" data-target="#exampleModal" >
+        <td>{{item.FirstName}}</td>
+        <td>{{item.LastName}}</td>
+        <td>{{item.email}}</td>
+        <td>{{item.InsaRanking}}</td>
+        <td>{{item.status}}</td>
+        <td v-if='item.status=="wait for university"'>   
+        <button  v-on:click='refuse(item)'type="button" class="btn btn-primary btn-danger" data-dismiss="modal">Refuse Student </button>
+        <button  v-on:click='accept(item)' type="button" class="btn btn-secondary btn-success">Accept Student</button>
+        </td>
+        
+      </tr>
+      </tbody>
+  </table>		
+		
+		
+		
+		</div>
+
+
+    
+    
+</div>
+
+</div>
+
+
+<script type="text/javascript" src="/js/axios/axios.min.js"></script>
+<script type="text/javascript" src="/js/vuejs/vue.js"></script>
+<script type="text/javascript" src="/js/bootstrapVuejs/polyfill.min.js"> </script>
+<script type="text/javascript" src="/js/bootstrapVuejs/bootstrap-vue.js"></script>
+<script type="text/javascript" src="/js/vuejs/pages/homeUniversity_myApplications.js"> </script>
+<script type="text/javascript" src="/js/jQuery/jquery-3.3.1.slim.min.js"></script>
+<script type="text/javascript" src="/js/popper/popper.min.js"></script>
+<script type="text/javascript" src="/js/bootstrap/bootstrap.min.js"></script>
+</body>
+</html>

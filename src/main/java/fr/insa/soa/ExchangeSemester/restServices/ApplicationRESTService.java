@@ -124,14 +124,14 @@ public class ApplicationRESTService {
 		if(json.get("type").toString().equals("response")) {
 			int idApplication = Integer.parseInt(json.get("idApplication"));
 			String response = json.get("response").toString();
-			
+			String login = json.get("idUser"); // get the username
+
 			Optional<Application> appOpt = applicationRepository.findById(idApplication);
 			Application app = appOpt.get();
 			String type = "";
 			
 			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 			
-			String login = auth.getName(); // get the username
 			User user = userRepository.findByLogin(login); // not found exception
 			
 			if(auth.getAuthorities().toString().equals("[ROLE_UNIVERSITY]")){
