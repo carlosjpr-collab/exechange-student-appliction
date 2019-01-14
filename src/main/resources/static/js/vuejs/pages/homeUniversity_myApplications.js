@@ -14,10 +14,12 @@ var app = new Vue({
 			 },
    methods:{
 	   accept:function(item){
+		   self.showloader=true;
 		   var self=this;
 		   axios.post('/service/application', {
 			   "type" : "response", 
 			   "idApplication" : item.appId, 
+			   "idUser":item.studentId,
 			   "response" : "OK" 
 			  })
 			  .then(function (response) {
@@ -29,13 +31,16 @@ var app = new Vue({
 			  });
 	   },
 	   refuse:function(item){
+		   self.showloader=true;
 		   axios.post('/service/application', {
 			   "type" : "response", 
 			   "idApplication" :item.appId , 
+			   "idUser":item.studentId,
 			   "response" : "NOK" 
 			  })
 			  .then(function (response) {
 			    console.log(response);
+				location.reload();
 			  })
 			  .catch(function (error) {
 			    console.log(error);
@@ -54,7 +59,8 @@ var app = new Vue({
 					InsaRanking: response.data[key].student.insaRanking,
 					status: response.data[key].status,
 					email:response.data[key].student.user.login,
-					appId:response.data[key].id
+					appId:response.data[key].id,
+					studentId:response.data[key].student.id
 				})
 		}
 		self.showloader=false;

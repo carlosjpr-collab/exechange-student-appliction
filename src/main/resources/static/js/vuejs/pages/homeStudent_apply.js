@@ -5,6 +5,7 @@ var app = new Vue({
 		 search:"",
          list_university: [],
 		 acceptV:false,
+		 showloader:true,
 		 universityId:"par default",
 		 universityCountry:"par default",
 		 universityCity:"par default",
@@ -70,6 +71,7 @@ var app = new Vue({
 	 self.list_university=response.data;
 	 self.list_university.forEach(function(element) { element.active = false; });
    console.log(self.list_university);
+   self.showloader=false;
   })
   .catch(function (error) {
     // handle error
