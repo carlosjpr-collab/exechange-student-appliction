@@ -57,21 +57,11 @@ public class UserStudentRESTServiceTest {
 				Collections.emptyList()
 				);
 		
-		/*
-		mockMvc.perform(get("/service/userStudent")
-					.accept(MediaType.APPLICATION_JSON))
-					.andExpect()
-					.andExpect(content().contentType(MediaType.APPLICATION_JSON))
-					  .andExpect(jsonPath("$.person.name").value("Jason"));
-		*/
 		 mockMvc.perform(get("/service/userStudent"))
 		   .andExpect(status().isOk())
 		   .andExpect(content().contentType("application/json;charset=UTF-8"))
-		   .andExpect(jsonPath("$.id", is(1)));
-		 
+		   .andExpect(jsonPath("$[0].id", is(1061)));
 
-		//verify(mvcResult).getResponse()
-		//verify(userRepostory).findAll();
 		
 	}
 }
