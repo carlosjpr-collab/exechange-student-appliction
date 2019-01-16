@@ -3,6 +3,8 @@ var app = new Vue({
    data: {
 		 applications:"par default",
 		 items:[],
+		 note:[],
+		 opened: [],
 		 fields: [
 		        { key: 'FirstName', sortable: true },
 		        { key: 'LastName', sortable: true },
@@ -13,6 +15,15 @@ var app = new Vue({
 		 showloader: true
 			 },
    methods:{
+	   shownote:function(id){
+		   	const index = this.opened.indexOf(id);
+		      if (index > -1) {
+		      	this.opened.splice(index, 1)
+		      } else {
+		      	this.opened.push(id)
+		      }
+		   
+	   },
 	   accept:function(item){
 		   var self=this;
 		   self.showloader=true;
@@ -48,10 +59,11 @@ var app = new Vue({
 			  });
 		   console.log(item)
 	   },
-		 getStarting: function() {
+  getStarting: function() {
 	  	self=this;
       axios.get('/service/application',{port:8080})
   	.then(function (response) {
+  		console.log(response)
 		for(var key in response.data) {
 		  self.items.push(
 				{   
@@ -64,6 +76,11 @@ var app = new Vue({
 					studentId:response.data[key].student.id
 				})
 		}
+  		 axios.get('/service/note',{port:8080})
+  	  	.then(function (response) {
+  	  		self.note=response.data;
+  	  		console.log(self.note)
+  	  	})
 		self.showloader=false;
   })
   .catch(function (error) {

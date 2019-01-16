@@ -39,12 +39,13 @@
 							<th>University Acceptance</th>
 						</tr>
 					</thead>
-					<tbody>
-						<tr v-for="item in items" data-toggle="modal" data-target="#exampleModal">
-							<td>{{item.FirstName}}</td>
-							<td>{{item.LastName}}</td>
-							<td>{{item.email}}</td>
-							<td>{{item.InsaRanking}}</td>
+
+					<tbody v-for="item in items" :id='item.studentId' >
+						<tr  :class="{ opened: opened.includes(item.studentId) }">
+							<td v-on:click='shownote(item.studentId)'style="text-align: center;">{{item.FirstName}}</td>
+							<td v-on:click='shownote(item.studentId)' style="text-align: center;">{{item.LastName}}</td>
+							<td v-on:click='shownote(item.studentId)' >{{item.email}}</td>
+							<td v-on:click='shownote(item.studentId)' >{{item.InsaRanking}}</td>
 							<td>{{item.status}}</td>
 							<td v-if='item.status=="wait for university"'>
 								<button v-on:click='refuse(item)' type="button" class="btn btn-primary btn-danger" data-dismiss="modal">Refuse
@@ -52,6 +53,10 @@
 								<button v-on:click='accept(item)' type="button" class="btn btn-secondary btn-success">Accept Student</button>
 							</td>
 						</tr>
+						<tr v-if="opened.includes(item.studentId)">
+						<td>note 
+					</td>
+						 </tr>
 					</tbody>
 				</table>
 			</div>
